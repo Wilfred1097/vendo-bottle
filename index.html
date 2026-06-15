@@ -83,6 +83,34 @@ body{
 .alert-warning{
     border-left:5px solid #ffc107;
 }
+@media (max-width: 991px){
+
+    .sidebar{
+        min-height:auto;
+    }
+
+    .topbar{
+        padding:15px;
+    }
+
+    .display-2{
+        font-size:3rem;
+    }
+
+    .stat-card h2{
+        font-size:1.8rem;
+    }
+
+    .activity-container{
+        max-height:250px;
+    }
+
+    .machine-status{
+        width:100%;
+        display:block;
+        text-align:center;
+    }
+}
 </style>
 </head>
 <body>
@@ -92,7 +120,16 @@ body{
 <div class="row">
 
     <!-- SIDEBAR -->
-    <div class="col-lg-2 p-0 sidebar">
+    <button
+        class="btn btn-dark d-lg-none m-3 w-25"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#sidebarMenu">
+        ☰ Menu
+    </button>
+
+    <!-- Desktop Sidebar -->
+    <div class="col-lg-2 p-0 sidebar d-none d-lg-block">
 
         <div class="text-center text-white py-4">
             <h4>♻ EcoPaper</h4>
@@ -101,32 +138,63 @@ body{
 
         <nav class="nav flex-column">
             <a class="nav-link active" href="index.html">🏠 Dashboard</a>
-          <!--   <a class="nav-link" href="#">🤖 Machines</a>
-            <a class="nav-link" href="#">📋 Transactions</a>
-            <a class="nav-link" href="#">📊 Reports</a>
-            <a class="nav-link" href="#">🔔 Notifications</a>
-            <a class="nav-link" href="#">⚙ Settings</a> -->
         </nav>
 
     </div>
 
+    <!-- Mobile Sidebar -->
+    <div
+        class="offcanvas offcanvas-start sidebar"
+        tabindex="-1"
+        id="sidebarMenu">
+
+        <div class="offcanvas-header text-white">
+            <h5 class="offcanvas-title">
+                ♻ EcoPaper
+            </h5>
+
+            <button
+                type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="offcanvas">
+            </button>
+        </div>
+
+        <div class="offcanvas-body">
+
+            <nav class="nav flex-column">
+                <a class="nav-link active" href="index.html">
+                    🏠 Dashboard
+                </a>
+            </nav>
+
+        </div>
+    </div>
+
     <!-- CONTENT -->
-    <div class="col-lg-10">
+    <div class="col-12 col-lg-10">
 
         <!-- TOPBAR -->
-        <div class="topbar d-flex justify-content-between align-items-center">
+        <div class="topbar">
 
-            <div>
-                <h3 class="mb-0">Smart Recycling Dashboard</h3>
-                <small class="text-muted">
-                    Plastic Bottle to Paper Conversion System
-                </small>
-            </div>
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
 
-            <div>
-                <span class="badge machine-status status-online">
-                    ● MACHINE ONLINE
-                </span>
+                <div>
+                    <h3 class="mb-0 fs-4">
+                        Smart Recycling Dashboard
+                    </h3>
+
+                    <small class="text-muted">
+                        Plastic Bottle to Paper Conversion System
+                    </small>
+                </div>
+
+                <div>
+                    <span class="badge machine-status status-online">
+                        ● MACHINE ONLINE
+                    </span>
+                </div>
+
             </div>
 
         </div>
@@ -301,59 +369,62 @@ body{
 
                             <div class="activity-container">
 
-                                <table class="table table-hover">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
 
-                                    <thead>
-                                        <tr>
-                                            <th>Time</th>
-                                            <th>Activity</th>
-                                            <th>Credit</th>
-                                        </tr>
-                                    </thead>
+                                        <thead>
+                                            <tr>
+                                                <th>Time</th>
+                                                <th>Activity</th>
+                                                <th>Credit</th>
+                                            </tr>
+                                        </thead>
 
-                                    <tbody>
+                                        <tbody>
 
-                                        <tr>
-                                            <td>10:01 AM</td>
-                                            <td>Bottle Inserted</td>
-                                            <td>
-                                                <span class="badge bg-success">
-                                                    +1
-                                                </span>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td>10:01 AM</td>
+                                                <td>Bottle Inserted</td>
+                                                <td>
+                                                    <span class="badge bg-success">
+                                                        +1
+                                                    </span>
+                                                </td>
+                                            </tr>
 
-                                        <tr>
-                                            <td>10:05 AM</td>
-                                            <td>Bottle Inserted</td>
-                                            <td>
-                                                <span class="badge bg-success">
-                                                    +1
-                                                </span>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td>10:05 AM</td>
+                                                <td>Bottle Inserted</td>
+                                                <td>
+                                                    <span class="badge bg-success">
+                                                        +1
+                                                    </span>
+                                                </td>
+                                            </tr>
 
-                                        <tr>
-                                            <td>10:08 AM</td>
-                                            <td>Bottle Inserted</td>
-                                            <td>
-                                                <span class="badge bg-success">
-                                                    +1
-                                                </span>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td>10:08 AM</td>
+                                                <td>Bottle Inserted</td>
+                                                <td>
+                                                    <span class="badge bg-success">
+                                                        +1
+                                                    </span>
+                                                </td>
+                                            </tr>
 
-                                        <tr>
-                                            <td>10:08 AM</td>
-                                            <td>Paper Dispensed</td>
-                                            <td>
-                                                <span class="badge bg-danger">
-                                                    -3
-                                                </span>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td>10:08 AM</td>
+                                                <td>Paper Dispensed</td>
+                                                <td>
+                                                    <span class="badge bg-danger">
+                                                        -3
+                                                    </span>
+                                                </td>
+                                            </tr>
 
-                                    </tbody>
+                                        </tbody>
+
+                                    </div>
 
                                 </table>
 
