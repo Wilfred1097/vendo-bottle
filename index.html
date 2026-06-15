@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Recycling Machine Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+    background:#f4f6f9;
+}
+
+.sidebar{
+    min-height:100vh;
+    background:#1f2937;
+}
+
+.sidebar .nav-link{
+    color:#cbd5e1;
+    padding:12px 20px;
+}
+
+.sidebar .nav-link:hover{
+    background:#374151;
+    color:#fff;
+}
+
+.card{
+    border:none;
+    border-radius:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.stat-card{
+    color:white;
+}
+
+.stat-icon{
+    font-size:2rem;
+}
+
+.activity-container{
+    max-height:350px;
+    overflow-y:auto;
+}
+
+.status-online{
+    background:#198754;
+}
+
+.status-warning{
+    background:#ffc107;
+    color:black;
+}
+
+.status-danger{
+    background:#dc3545;
+}
+
+.section-title{
+    font-weight:600;
+    margin-bottom:15px;
+}
+
+.topbar{
+    background:white;
+    padding:15px 25px;
+    box-shadow:0 2px 5px rgba(0,0,0,.05);
+}
+
+.machine-status{
+    font-size:14px;
+    padding:8px 14px;
+    border-radius:30px;
+}
+
+.alert-card{
+    border-left:5px solid #dc3545;
+}
+
+.alert-warning{
+    border-left:5px solid #ffc107;
+}
+</style>
+</head>
+<body>
+
+<div class="container-fluid">
+
+<div class="row">
+
+    <!-- SIDEBAR -->
+    <div class="col-lg-2 p-0 sidebar">
+
+        <div class="text-center text-white py-4">
+            <h4>♻ EcoPaper</h4>
+            <small>IoT Monitoring</small>
+        </div>
+
+        <nav class="nav flex-column">
+            <a class="nav-link active" href="index.html">🏠 Dashboard</a>
+          <!--   <a class="nav-link" href="#">🤖 Machines</a>
+            <a class="nav-link" href="#">📋 Transactions</a>
+            <a class="nav-link" href="#">📊 Reports</a>
+            <a class="nav-link" href="#">🔔 Notifications</a>
+            <a class="nav-link" href="#">⚙ Settings</a> -->
+        </nav>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="col-lg-10">
+
+        <!-- TOPBAR -->
+        <div class="topbar d-flex justify-content-between align-items-center">
+
+            <div>
+                <h3 class="mb-0">Smart Recycling Dashboard</h3>
+                <small class="text-muted">
+                    Plastic Bottle to Paper Conversion System
+                </small>
+            </div>
+
+            <div>
+                <span class="badge machine-status status-online">
+                    ● MACHINE ONLINE
+                </span>
+            </div>
+
+        </div>
+
+        <div class="p-4">
+
+            <!-- STAT CARDS -->
+            <div class="row g-4">
+
+                <div class="col-md-3">
+                    <div class="card stat-card bg-primary">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <small>Total Credits</small>
+                                    <h2>20</h2>
+                                </div>
+                                <div class="stat-icon">
+                                    💳
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card stat-card bg-success">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <small>Bottles Collected</small>
+                                    <h2>60</h2>
+                                </div>
+                                <div class="stat-icon">
+                                    ♻
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card stat-card bg-info">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <small>Papers Dispensed</small>
+                                    <h2>20</h2>
+                                </div>
+                                <div class="stat-icon">
+                                    📄
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card stat-card bg-dark">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <small>Paper Remaining</small>
+                                    <h2>80</h2>
+                                </div>
+                                <div class="stat-icon">
+                                    📝
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- STATUS ROW -->
+            <div class="row mt-4 g-4">
+
+                <div class="col-md-6">
+
+                    <div class="card h-100">
+
+                        <div class="card-body">
+
+                            <h5 class="section-title">
+                                Paper Status
+                            </h5>
+
+                            <div class="text-center">
+
+                                <h1 class="text-success">
+                                    🟢
+                                </h1>
+
+                                <h4>Paper Available</h4>
+
+                                <p class="text-muted">
+                                    Remaining: 80 Sheets
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="card h-100">
+
+                        <div class="card-body">
+
+                            <h5 class="section-title">
+                                Collection Box Status
+                            </h5>
+
+                            <h4>20% Full</h4>
+
+                            <div class="progress" style="height:30px;">
+                                <div
+                                    class="progress-bar bg-warning"
+                                    style="width:75%;">
+                                    20%
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                Capacity:
+                                <strong>60 / 300 Bottles</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CREDIT COUNTER -->
+            <div class="card mt-4">
+
+                <div class="card-body text-center">
+
+                    <h5 class="section-title">
+                        Current Credit Counter
+                    </h5>
+
+                    <h1 class="display-2 text-primary">
+                        15
+                    </h1>
+
+                    <p class="text-muted">
+                        Every 3 Credits = 1 Paper
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- ACTIVITY + ALERTS -->
+            <div class="row mt-4 g-4">
+
+                <div class="col-md-8">
+
+                    <div class="card">
+
+                        <div class="card-body">
+
+                            <h5 class="section-title">
+                                Real-Time Activity Logs
+                            </h5>
+
+                            <div class="activity-container">
+
+                                <table class="table table-hover">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Time</th>
+                                            <th>Activity</th>
+                                            <th>Credit</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr>
+                                            <td>10:01 AM</td>
+                                            <td>Bottle Inserted</td>
+                                            <td>
+                                                <span class="badge bg-success">
+                                                    +1
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>10:05 AM</td>
+                                            <td>Bottle Inserted</td>
+                                            <td>
+                                                <span class="badge bg-success">
+                                                    +1
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>10:08 AM</td>
+                                            <td>Bottle Inserted</td>
+                                            <td>
+                                                <span class="badge bg-success">
+                                                    +1
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>10:08 AM</td>
+                                            <td>Paper Dispensed</td>
+                                            <td>
+                                                <span class="badge bg-danger">
+                                                    -3
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="card alert-card mb-3">
+
+                        <div class="card-body">
+
+                            <h6>🔴 Critical Alert</h6>
+
+                            <p class="mb-0">
+                                Paper stock below 20%.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card alert-warning">
+
+                        <div class="card-body">
+
+                            <h6>🟠 Warning</h6>
+
+                            <p class="mb-0">
+                                Collection box is almost full.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- REPORTS -->
+            <!-- <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="section-title">
+                                Environmental Impact
+                            </h5>
+
+                            <ul class="list-group">
+
+                                <li class="list-group-item">
+                                    Total Bottles Recycled
+                                    <strong class="float-end">
+                                        2,500
+                                    </strong>
+                                </li>
+
+                                <li class="list-group-item">
+                                    Plastic Diverted
+                                    <strong class="float-end">
+                                        37.5 kg
+                                    </strong>
+                                </li>
+
+                                <li class="list-group-item">
+                                    Papers Distributed
+                                    <strong class="float-end">
+                                        833
+                                    </strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="section-title">
+                                Machine Configuration
+                            </h5>
+
+                            <table class="table">
+
+                                <tr>
+                                    <td>Credit per Bottle</td>
+                                    <td><strong>1</strong></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Credits per Paper</td>
+                                    <td><strong>3</strong></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Paper Capacity</td>
+                                    <td><strong>200</strong></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Box Capacity</td>
+                                    <td><strong>500</strong></td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
