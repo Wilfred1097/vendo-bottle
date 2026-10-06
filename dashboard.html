@@ -136,6 +136,14 @@ body {
     border-bottom: 1px solid #e2e8f0;
 }
 
+/* Member Profile Card Customizations */
+.member-avatar {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 4px solid #f1f5f9;
+}
+
 @media (max-width: 991px) {
     .sidebar { min-height: auto; }
     .topbar { padding: 15px; }
@@ -155,6 +163,7 @@ body {
         </div>
         <nav class="nav flex-column mt-2">
             <a class="nav-link active mb-1" onclick="switchTab('dashboard', event)"><i class="fa-solid fa-chart-pie me-2"></i> Dashboard</a>
+            <a class="nav-link mb-1" onclick="switchTab('members', event)"><i class="fa-solid fa-users me-2"></i> Group Members</a>
             <a class="nav-link mb-1" onclick="switchTab('settings', event)"><i class="fa-solid fa-gear me-2"></i> Settings</a>
             <a class="nav-link text-danger mt-4" onclick="handleLogout()"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Logout</a>
         </nav>
@@ -169,6 +178,7 @@ body {
         <div class="offcanvas-body">
             <nav class="nav flex-column">
                 <a class="nav-link active mb-1" onclick="switchTab('dashboard', event); closeOffcanvas();"><i class="fa-solid fa-chart-pie me-2"></i> Dashboard</a>
+                <a class="nav-link mb-1" onclick="switchTab('members', event); closeOffcanvas();"><i class="fa-solid fa-users me-2"></i> Group Members</a>
                 <a class="nav-link mb-1" onclick="switchTab('settings', event); closeOffcanvas();"><i class="fa-solid fa-gear me-2"></i> Settings</a>
                 <a class="nav-link text-danger mt-4" onclick="handleLogout()"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Logout</a>
             </nav>
@@ -274,8 +284,8 @@ body {
                                     <div id="containerProgressBar" class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width: 0%;"></div>
                                 </div>
                                 <div class="d-flex justify-content-between text-muted small">
-                                    <span>Sensor V1 Reading:</span>
-                                    <span id="containerPercentText"><strong>0%</strong></span>
+                                    <span class="d-none">Sensor V1 Reading:</span>
+                                    <span class="d-none" id="containerPercentText"><strong>0%</strong></span>
                                 </div>
                             </div>
                         </div>
@@ -327,7 +337,67 @@ body {
                 </div>
             </div>
 
-            <!-- TAB 2: SETTINGS VIEW -->
+            <!-- TAB 2: GROUP MEMBERS VIEW -->
+            <div id="viewMembers" class="tab-view d-none">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h4 class="fw-bold mb-1"><i class="fa-solid fa-users text-success me-2"></i> Project Development Team</h4>
+                        <p class="text-muted small">Meet the brilliant minds and developers behind the EcoPaper Smart Recycling IoT System.</p>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Member 1 -->
+                    <div class="col-md-6 col-xl-3">
+                        <div class="card h-100 text-center p-4">
+                            <div class="card-body p-0 d-flex flex-column align-items-center">
+                                <img src="https://scontent.fcrk4-1.fna.fbcdn.net/v/t1.15752-9/825311121_1004202299352501_4412660760770600209_n.png?stp=dst-png&cstp=mx1452x1083&ctp=s1452x1083&_nc_cat=102&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeE_Wqz_WUTVPOwbrFip3dn-sVu3yhedAkmxW7fKF50CSYvRLMUFK8kKOBluNkGxob82YiHpWiJMVk4SXxfcSTNv&_nc_ohc=32SgfjQNxDoQ7kNvwE9NBk4&_nc_oc=AdrJBVTnlTtN3hlarTk0kDCxrhGGTF8a9Cb6F3UMpxBqzi0P0nZPSyB84PAdE4PyNJM&_nc_zt=23&_nc_ht=scontent.fcrk4-1.fna&_nc_ss=7b2a8&oh=03_Q7cD6gEe5Ymq5Md2vI_lGhygesKG06MMkDiDOq3b-ArALrt05w&oe=6AEBFC44" alt="Alex Rivera" class="rounded-circle member-avatar mb-3 shadow-sm" crossorigin="anonymous">
+                                <h5 class="fw-bold text-dark mb-1">Cherry Ann Tesio</h5>
+                                <span class="badge bg-success bg-opacity-10 text-success fw-semibold mb-2 px-3 py-1">Quality Assurance, Research & Documentation Reviewer</span>
+                                <p class="text-muted small mb-3">Double-checks the research paper and system; analyzes results and system performance; proofreads and reviews the paper; checks for errors, inconsistencies, and missing information; assists in improving the accuracy and quality of the project documentation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member 2 -->
+                    <div class="col-md-6 col-xl-3">
+                        <div class="card h-100 text-center p-4">
+                            <div class="card-body p-0 d-flex flex-column align-items-center">
+                                <img src="https://scontent.fcrk2-2.fna.fbcdn.net/v/t1.15752-9/832835419_964387116091870_1932643295871315883_n.png?stp=dst-png&cstp=mx1254x1254&ctp=s1254x1254&_nc_cat=102&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeFGJK9HomAfnOwbDfuq9751Pk25ZpCK-RE-TblmkIr5EaOaQCcKvOQJffM3JeIYbCrliKvtw72Wkb3lycivTYLg&_nc_ohc=58_v57pJXxwQ7kNvwEhVaHg&_nc_oc=AdqOihgHxzJFepxQOJ7sPS1816Prsn-uzNjJMQz5fG9btbBpXXt1zcpJpeGUM2HI9Ro&_nc_zt=23&_nc_ht=scontent.fcrk2-2.fna&_nc_ss=7b2a8&oh=03_Q7cD6gF5FJh-SJ9MCPsrMChRHMxR6NT4dRC0y6JxugjcnePqHw&oe=6AEBEE16" alt="Sarah Chen" class="rounded-circle member-avatar mb-3 shadow-sm" crossorigin="anonymous">
+                                <h5 class="fw-bold text-dark mb-1">Glydel Inot</h5>
+                                <span class="badge bg-primary bg-opacity-10 text-primary fw-semibold mb-2 px-3 py-1">Documentation Assistant & Project Organizer</span>
+                                <p class="text-muted small mb-3">Assists Cherry Ann and Jhonamery with documentation; arranges and organizes papers, files, requirements, and supporting materials; helps ensure that documents are complete and properly arranged; assists with preparation of materials needed for submission and presentation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member 3 -->
+                    <div class="col-md-6 col-xl-3">
+                        <div class="card h-100 text-center p-4">
+                            <div class="card-body p-0 d-flex flex-column align-items-center">
+                                <img src="https://scontent.fcrk4-1.fna.fbcdn.net/v/t1.15752-9/836329079_2902296170145623_8845151800759353593_n.jpg?stp=dst-jpg_tt6&cstp=mx1086x1448&ctp=s1086x1448&_nc_cat=103&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeH9SYV5XBpQG0_sXX8qy00m2I-T871BKnjYj5PzvUEqeO0RQODBQdbyjt3-qM5Wc7hLz54IxMzeKoH4VNJVEhFE&_nc_ohc=MIgqTltKBXMQ7kNvwHkqsTD&_nc_oc=AdrM-kLwZnRjN5l93eU5iZV73IUK_7n_PGjoGtu7v8sjotrCdOrQkkG2Grp6YH8B9Os&_nc_zt=23&_nc_ht=scontent.fcrk4-1.fna&_nc_ss=7b2a8&oh=03_Q7cD6gEcvW8DXS_Bs-bSvBsBfvN3uK-NzaGjpfJLtzIJIDUPeg&oe=6AEBEF32" alt="Marcus Johnson" class="rounded-circle member-avatar mb-3 shadow-sm" crossorigin="anonymous">
+                                <h5 class="fw-bold text-dark mb-1">Roldan Carpio</h5>
+                                <span class="badge bg-warning bg-opacity-10 text-warning fw-semibold mb-2 px-3 py-1">Machine Box Builder / Fabrication</span>
+                                <p class="text-muted small mb-3">Responsible primarily for constructing and assembling the physical machine box or enclosure; handles the exterior structure and physical framework of the Eco-Friendly Vendo; assists with modifications to the machine enclosure when needed.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member 4 -->
+                    <div class="col-md-6 col-xl-3">
+                        <div class="card h-100 text-center p-4">
+                            <div class="card-body p-0 d-flex flex-column align-items-center">
+                                <img src="https://scontent.fcrk4-1.fna.fbcdn.net/v/t1.15752-9/836614617_1651229943219934_1024800650329330037_n.png?stp=dst-png&cstp=mx1024x1535&ctp=s1024x1535&_nc_cat=103&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeGgxKbLJS2kh63pJg_KF2D7W1WcE76JX19bVZwTvolfX1aR7NNfdkkNqek0LpXweqwI_sGEtmZq3mm3zDmd5FWv&_nc_ohc=xeBujAf4Q5cQ7kNvwF1cS85&_nc_oc=Ado_UKLAOzIAomN5wCM8M_IUjogPdRiKEP0NiQQ_aPJURwPay9TJrzxQzBXQDRz7V7E&_nc_zt=23&_nc_ht=scontent.fcrk4-1.fna&_nc_ss=7b2a8&oh=03_Q7cD6gHoa7LALqUnyjjTEhXkzEme_lueUDzRzoa2oq0foTt_zg&oe=6AEBF333" alt="Elena Petrova" class="rounded-circle member-avatar mb-3 shadow-sm" crossorigin="anonymous">
+                                <h5 class="fw-bold text-dark mb-1">Jhonamery Surdilla</h5>
+                                <span class="badge bg-info bg-opacity-10 text-info fw-semibold mb-2 px-3 py-1">Project Leader & Lead Developer</span>
+                                <p class="text-muted small mb-3">Leads and coordinates the entire project; handles most of the project development; manages the internal components and mechanisms of the machine; works on the system integration, programming, and technical implementation; prepares and manages the main documentation; coordinates with the adviser; oversees the completion of all project requirements.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: SETTINGS VIEW -->
             <div id="viewSettings" class="tab-view d-none">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -426,6 +496,7 @@ function switchTab(tabName, event) {
     if (event) event.preventDefault();
     
     const dashboardView = document.getElementById("viewDashboard");
+    const membersView = document.getElementById("viewMembers");
     const settingsView = document.getElementById("viewSettings");
     const topbarTitle = document.getElementById("topbarTitle");
     const topbarSubtitle = document.getElementById("topbarSubtitle");
@@ -436,24 +507,33 @@ function switchTab(tabName, event) {
         event.currentTarget.classList.add("active");
     }
 
-    if (tabName === 'settings') {
-        dashboardView.classList.add("d-none");
-        settingsView.classList.remove("d-none");
-        topbarTitle.textContent = "Account Settings";
-        topbarSubtitle.textContent = "Manage your portal username and password credentials";
+    // Hide all views first safely
+    if (dashboardView) dashboardView.classList.add("d-none");
+    if (membersView) membersView.classList.add("d-none");
+    if (settingsView) settingsView.classList.add("d-none");
+
+    if (tabName === 'members') {
+        if (membersView) membersView.classList.remove("d-none");
+        if (topbarTitle) topbarTitle.textContent = "Group Members";
+        if (topbarSubtitle) topbarSubtitle.textContent = "EcoPaper Project Development Team";
+    } else if (tabName === 'settings') {
+        if (settingsView) settingsView.classList.remove("d-none");
+        if (topbarTitle) topbarTitle.textContent = "Account Settings";
+        if (topbarSubtitle) topbarSubtitle.textContent = "Manage your portal username and password credentials";
     } else {
-        settingsView.classList.add("d-none");
-        dashboardView.classList.remove("d-none");
-        topbarTitle.textContent = "Smart Recycling Dashboard";
-        topbarSubtitle.textContent = "Plastic Bottle to Paper Conversion System";
+        if (dashboardView) dashboardView.classList.remove("d-none");
+        if (topbarTitle) topbarTitle.textContent = "Smart Recycling Dashboard";
+        if (topbarSubtitle) topbarSubtitle.textContent = "Plastic Bottle to Paper Conversion System";
     }
 }
 
 function closeOffcanvas() {
     const offcanvasEl = document.getElementById("sidebarMenu");
-    const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
-    if (bsOffcanvas) {
-        bsOffcanvas.hide();
+    if (offcanvasEl) {
+        const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
+        if (bsOffcanvas) {
+            bsOffcanvas.hide();
+        }
     }
 }
 
@@ -512,7 +592,7 @@ async function handleUpdateCredentials(event) {
         await Promise.all(updatePromises);
 
         alertBox.className = "alert alert-success py-2 small mb-3";
-        alertBox.textContent = "Credentials successfully updated!";
+        alertBox.textContent = "Credentials successfully updated on Blynk server!";
         alertBox.classList.remove("d-none");
 
         // Clear sensitive inputs
@@ -533,23 +613,23 @@ async function handleUpdateCredentials(event) {
 }
 
 async function updateDashboardData() {
-    const baseUrl = "https://sgp1.blynk.cloud/external/api";
-
     // 1. Fetch Hardware Online/Offline Status
     try {
-        const res = await fetch(`${baseUrl}/isHardwareConnected?token=${TOKEN}`);
+        const res = await fetch(`${BASE_URL}/isHardwareConnected?token=${TOKEN}`);
         const text = await res.text();
         const isOnline = text.trim() === "true";
         
         const badge = document.getElementById("statusBadge");
         const statusText = document.getElementById("statusText");
 
-        if (isOnline) {
-            badge.className = "machine-status status-online";
-            statusText.textContent = "MACHINE ONLINE";
-        } else {
-            badge.className = "machine-status status-offline";
-            statusText.textContent = "MACHINE OFFLINE";
+        if (badge && statusText) {
+            if (isOnline) {
+                badge.className = "machine-status status-online";
+                statusText.textContent = "MACHINE ONLINE";
+            } else {
+                badge.className = "machine-status status-offline";
+                statusText.textContent = "MACHINE OFFLINE";
+            }
         }
     } catch (e) {
         console.error("Error checking hardware connection:", e);
@@ -557,16 +637,18 @@ async function updateDashboardData() {
 
     // 2. Fetch Paper Feed Status (V0: 1 = Available, 0 = No Paper)
     try {
-        const res = await fetch(`${baseUrl}/get?token=${TOKEN}&V0`);
+        const res = await fetch(`${BASE_URL}/get?token=${TOKEN}&V0`);
         const val = await res.text();
         const paperText = document.getElementById("paperFeedText");
         
-        if (val.trim() === "1") {
-            paperText.textContent = "Paper Available";
-            paperText.className = "fw-bold mb-0 mt-2 text-success";
-        } else {
-            paperText.textContent = "No Paper";
-            paperText.className = "fw-bold mb-0 mt-2 text-danger";
+        if (paperText) {
+            if (val.trim() === "1") {
+                paperText.textContent = "Paper Available";
+                paperText.className = "fw-bold mb-0 mt-2 text-success";
+            } else {
+                paperText.textContent = "No Paper";
+                paperText.className = "fw-bold mb-0 mt-2 text-danger";
+            }
         }
     } catch (e) {
         console.error("Error fetching V0 paper status:", e);
@@ -574,27 +656,32 @@ async function updateDashboardData() {
 
     // 3. Fetch Container Level Percentage (V1: 0 to 100)
     try {
-        const res = await fetch(`${baseUrl}/get?token=${TOKEN}&V1`);
+        const res = await fetch(`${BASE_URL}/get?token=${TOKEN}&V1`);
         const textVal = res.text ? await res.text() : "0";
         const val = parseFloat(textVal) || 0;
         
         const percent = Math.min(Math.max(val, 0), 100);
         
-        document.getElementById("containerPercentText").innerHTML = `<strong>${percent}%</strong>`;
-        document.getElementById("containerBadge").textContent = `${percent}% Full`;
-        
+        const containerPercentText = document.getElementById("containerPercentText");
+        const containerBadge = document.getElementById("containerBadge");
         const progressBar = document.getElementById("containerProgressBar");
-        progressBar.style.width = `${percent}%`;
 
-        if (percent > 85) {
-            progressBar.className = "progress-bar bg-danger progress-bar-striped progress-bar-animated";
-            document.getElementById("containerBadge").className = "badge bg-danger text-white px-2 py-1";
-        } else if (percent > 60) {
-            progressBar.className = "progress-bar bg-warning progress-bar-striped progress-bar-animated";
-            document.getElementById("containerBadge").className = "badge bg-warning text-dark px-2 py-1";
-        } else {
-            progressBar.className = "progress-bar bg-success progress-bar-striped progress-bar-animated";
-            document.getElementById("containerBadge").className = "badge bg-success text-white px-2 py-1";
+        if (containerPercentText) containerPercentText.innerHTML = `<strong>${percent}%</strong>`;
+        if (containerBadge) containerBadge.textContent = `${percent}% Full`;
+        
+        if (progressBar) {
+            progressBar.style.width = `${percent}%`;
+
+            if (percent > 85) {
+                progressBar.className = "progress-bar bg-danger progress-bar-striped progress-bar-animated";
+                if (containerBadge) containerBadge.className = "badge bg-danger text-white px-2 py-1";
+            } else if (percent > 60) {
+                progressBar.className = "progress-bar bg-warning progress-bar-striped progress-bar-animated";
+                if (containerBadge) containerBadge.className = "badge bg-warning text-dark px-2 py-1";
+            } else {
+                progressBar.className = "progress-bar bg-success progress-bar-striped progress-bar-animated";
+                if (containerBadge) containerBadge.className = "badge bg-success text-white px-2 py-1";
+            }
         }
     } catch (e) {
         console.error("Error fetching V1 container level:", e);
