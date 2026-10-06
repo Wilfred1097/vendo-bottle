@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EcoPaper - Secure Login</title>
+<title>EcoFriendly - Smart Recycling IoT Dashboard</title>
 
 <!-- Bootstrap 5 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -14,76 +14,208 @@
 
 <style>
 :root {
-    --primary-bg: #f8fafc;
-    --sidebar-bg: #0f172a;
-    --card-bg: #ffffff;
-    --text-main: #334155;
+    --primary-bg: #064e3b;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text-main: #1e293b;
     --text-muted: #64748b;
     --accent-green: #10b981;
+    --accent-glow: rgba(16, 185, 129, 0.25);
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     background: var(--primary-bg);
     font-family: 'Inter', sans-serif;
     color: var(--text-main);
+    overflow: hidden; /* Prevents unwanted scrollbars/gaps */
 }
 
-/* LOGIN SCREEN STYLING */
+/* LOGIN SCREEN STYLING WITH FULL-SCREEN ECO-IOT BACKDROP */
 #loginScreen {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #0f172a 100%);
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+}
+
+/* Background tech/eco ambient glowing circles */
+#loginScreen::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+    top: -100px;
+    left: -100px;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+#loginScreen::after {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+    bottom: -100px;
+    right: -100px;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.login-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 440px;
+    padding: 15px;
+}
+
+/* IoT Status Badge Pill */
+.iot-badge {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #34d399;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.iot-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 
 .login-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    width: 100%;
-    max-width: 420px;
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 2.5rem;
+}
+
+.icon-box {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    color: #059669;
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    margin: 0 auto 1.25rem auto;
+    box-shadow: 0 8px 16px rgba(16, 185, 129, 0.15);
+}
+
+.form-control:focus {
+    border-color: var(--accent-green);
+    box-shadow: 0 0 0 4px var(--accent-glow);
+}
+
+.input-group-text {
+    border-color: #cbd5e1;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #047857 0%, #059669 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3) !important;
+}
+
+.feature-pills {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 1.5rem;
+    text-align: center;
 }
 </style>
 </head>
 <body>
 
 <div id="loginScreen">
-    <div class="login-card">
-        <div class="text-center mb-4">
-            <div class="display-5 text-success mb-2"><i class="fa-solid fa-recycle"></i></div>
-            <h3 class="fw-bold text-dark">EcoPaper Portal</h3>
-            <p class="text-muted small">Sign in to access the Smart Recycling IoT Dashboard</p>
+    <div class="login-wrapper">
+        
+        <!-- Top IoT Live Connection Pill -->
+        <div class="text-center mb-3">
+            <div class="iot-badge">
+                <span class="iot-dot"></span>
+                <span>ECO-PAPER CLOUD IoT SYNC ACTIVE</span>
+            </div>
         </div>
 
-        <form id="loginForm" onsubmit="handleLogin(event)">
-            <div class="mb-3">
-                <label class="form-label small fw-semibold text-muted">Username</label>
-                <div class="input-group">
-                    <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-user text-muted"></i></span>
-                    <input type="text" id="loginUser" class="form-control bg-light border-start-0" placeholder="Enter username" required>
+        <div class="login-card">
+            <div class="text-center mb-4">
+                <div class="icon-box">
+                    <i class="fa-solid fa-recycle"></i>
                 </div>
+                <h3 class="fw-bold text-dark mb-1">EcoFriendly Portal</h3>
+                <p class="text-muted small">Sign in to monitor your Smart Recycling IoT System</p>
             </div>
 
-            <div class="mb-4">
-                <label class="form-label small fw-semibold text-muted">Password</label>
-                <div class="input-group">
-                    <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-lock text-muted"></i></span>
-                    <input type="password" id="loginPass" class="form-control bg-light border-start-0" placeholder="••••••••" required>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="mb-3">
+                    <label class="form-label small fw-semibold text-muted"><i class="fa-solid fa-user me-1 text-success"></i> Username</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-id-badge text-muted"></i></span>
+                        <input type="text" id="loginUser" class="form-control bg-light border-start-0 py-2" placeholder="Enter portal username" required>
+                    </div>
                 </div>
-            </div>
 
-            <div id="loginError" class="alert alert-danger py-2 small d-none mb-3">
-                Invalid credentials. Please try again.
-            </div>
+                <div class="mb-4">
+                    <label class="form-label small fw-semibold text-muted"><i class="fa-solid fa-key me-1 text-success"></i> Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-lock text-muted"></i></span>
+                        <input type="password" id="loginPass" class="form-control bg-light border-start-0 py-2" placeholder="••••••••" required>
+                    </div>
+                </div>
 
-            <button type="submit" id="loginBtn" class="btn btn-success w-100 py-2 fw-semibold shadow-sm">
-                <i class="fa-solid fa-right-to-bracket me-2"></i> Secure Login
-            </button>
-        </form>
+                <div id="loginError" class="alert alert-danger py-2 small d-none mb-3" role="alert">
+                    Invalid credentials. Please try again.
+                </div>
+
+                <button type="submit" id="loginBtn" class="btn btn-success w-100 py-2.5 fw-semibold shadow-sm rounded-3">
+                    <i class="fa-solid fa-right-to-bracket me-2"></i> Secure IoT Login
+                </button>
+            </form>
+
+            <div class="feature-pills">
+                <span class="mx-2"><i class="fa-solid fa-leaf text-success me-1"></i> Eco Automated</span> • 
+                <span class="ms-2"><i class="fa-solid fa-wifi text-success me-1"></i> Real-Time</span>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -110,7 +242,7 @@ async function handleLogin(event) {
 
     errorDiv.classList.add("d-none");
     loginBtn.disabled = true;
-    loginBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Verifying...`;
+    loginBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Verifying IoT Credentials...`;
 
     try {
         const baseUrl = "https://sgp1.blynk.cloud/external/api";
@@ -139,7 +271,7 @@ async function handleLogin(event) {
         errorDiv.classList.remove("d-none");
     } finally {
         loginBtn.disabled = false;
-        loginBtn.innerHTML = `<i class="fa-solid fa-right-to-bracket me-2"></i> Secure Login`;
+        loginBtn.innerHTML = `<i class="fa-solid fa-right-to-bracket me-2"></i> Secure IoT Login`;
     }
 }
 </script>
